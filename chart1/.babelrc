@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["@babel/preset-env",{
+    "modules": false,
+    "targets":{
+      "browsers": ["> 1%", "last 2 versions", "not ie <= 8"],
+      "node": "current"
+    },
+  }],
+  "@babel/preset-react"
+],
+  "plugins":[]
+}
+
+// presets 一系列 babel-plugins 的集盒
+// plugins 你可以理解为一个plugins 对应一个功能 
