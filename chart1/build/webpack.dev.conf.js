@@ -6,7 +6,7 @@ const utils = require('./utils')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  context:path.resolve(__dirname,'../'),
+  context:path.resolve(__dirname,'../'), // 
   entry:{
     index:'./src/index.js',  // 多入口打包
     search:'./src/search.js' // 多入口打包
@@ -32,6 +32,34 @@ module.exports = {
           loader:'babel-loader'
         }
       },
+      {
+        test:/\.(png|jpe?g|gif)(\?.*)?$/, // 图片
+        loader:'url-loader', // 小图片的base64转换
+        options:{
+          limit:10240,
+          name: utils.assetsPath('img/[name].[hash:8].[ext]')
+        }
+      },
+      {
+        test:/\.(svg)(\?.*)?$/, // 图片
+        loader:'svg-inline-loader', // 小图片的base64转换
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/, // 视频音频
+        loader:'url-loader',
+        options:{
+          limit:10240,
+          name:utils.assetsPath('media/[name].[hash:8].[ext]')
+        }
+      },
+      {
+        test:/\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader:'file-loader',
+        options:{
+          limit:10240,
+          name:utils.assetsPath('fonts/[name].[hash:8].[ext]')
+        }
+      }
     ]
   },
   // 插件用于处理bundle文件的优化，资源管理和环境变量注入，

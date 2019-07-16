@@ -1,0 +1,9 @@
+.DS_Store
+chart1/node_modules/
+chart1/dist/
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

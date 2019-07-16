@@ -1,3 +1,24 @@
+
+'use strict'
+const path = require('path')
+const config = require('../config')
+
+exports.assetsPath = function(_path) {
+  let basePath = ''
+  const env = process.env.NODE_ENV
+  if(env === 'development') {
+    basePath = config.dev.assetsSubDirectory
+  } else {
+    basePath = config.prod.assetsSubDirectory
+  }
+  return path.posix.join(basePath,_path)
+}
+
+
+exports.resolve = function(dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 exports.cssLoaders = function(options) {
   options = options || {}
   const cssLoader = {
@@ -9,7 +30,6 @@ exports.cssLoaders = function(options) {
   const styleLoader = {
     loader:'style-loader',  // 将css添加到style中
   }
-
   const postCssLoader = {
     loader:'postcss-loader',  // 添加css前缀
   }

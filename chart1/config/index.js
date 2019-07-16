@@ -1,5 +1,5 @@
 'use strict'
-var path = require(path)
+var path = require('path')
 const config = require('./prod.env')
 const assetPath = config.publishBase.replace(/"/g, '')
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
     useEslint: true, // 开启 eslint代码规范检测
     showEslintErrorInOverlay: false, // 如果开启，eslint errors and warnings  会在浏览器中开启
   },
-  pro:{
+  prod:{
     index: path.resolve(__dirname,'../dist/index.html'),
     assetsRoot: path.resolve(__dirname,'../dist'),
     assetsSubDirectory: 'static',
