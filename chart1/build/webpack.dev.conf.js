@@ -6,18 +6,19 @@ const utils = require('./utils')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 module.exports = {
-  context:path.resolve(__dirname,'../'), // 
-  entry:{
+  context: path.resolve(__dirname,'../'), // 基础目录：绝对路径，用于从配置中解析入口起点(entry point)和 loader，默认是当前目录，推荐传递一个值（不同操作系统路径解析不一样）
+  // 相对于此目录解析 
+  entry: {
     index:'./src/index.js',  // 多入口打包
     search:'./src/search.js' // 多入口打包
   },
-  output:{
+  output: {
     path: path.join(__dirname,'../dist'),
     filename:'[name].js' // [name]  占位符
   },
   // mode: 用来指定当前的构建环境是：production
   mode: 'none',
-  module:{
+  module: {
     // webpack 开箱即用只支持JS 和 JSON 两种文件类型，
     // 通过loaders去支持其他文件类型并且把它们转换成有效的模块，并可以添加到依赖图中。
     rules:[
