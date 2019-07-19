@@ -15,7 +15,7 @@ module.exports = {
     devTool: 'eval', // 控制如何生成生成 source map。
     jsSourceMap: true,
     autoOpenBrowser: true, // 开启自动打开浏览器
-    errorOverlay: true,   
+    errorOverlay: true,  // 当出现编译错误或警告时候，在浏览器中显示全屏覆盖。
     notifyOnErrors: true,  // 开启错误提示
     useEslint: true, // 开启 eslint代码规范检测
     showEslintErrorInOverlay: false, // 如果开启，eslint errors and warnings  会在浏览器中开启
