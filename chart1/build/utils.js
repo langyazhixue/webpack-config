@@ -2,14 +2,15 @@
 'use strict'
 const path = require('path')
 const config = require('../config')
-
+const packageConfig = require('../package.json')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 exports.assetsPath = function(_path) {
   let basePath = ''
   const env = process.env.NODE_ENV
   if(env === 'development') {
     basePath = config.dev.assetsSubDirectory
   } else {
-    basePath = config.prod.assetsSubDirectory
+    basePath = config.build.assetsSubDirectory
   }
   return path.posix.join(basePath,_path)
 }
@@ -29,9 +30,15 @@ exports.cssLoaders = function(options) {
   }
   const styleLoader = {
     loader:'style-loader',  // 将css添加到style中
+    options:{
+      singleton: true,
+      insertAt:'top',
+      sourceMap: options.sourceMap
+    }
   }
   const postCssLoader = {
     loader:'postcss-loader',  // 添加css前缀
+
   }
 
   function generateLoaders(loader,loaderOptions) {
@@ -58,48 +65,43 @@ exports.cssLoaders = function(options) {
     return loaders
   }
   return  {
-    css:generateLoaders(),
-    postcss:generateLoaders(),
-    less:generateLoaders('less',{
+    css: generateLoaders(),
+    postcss: generateLoaders(),
+    less: generateLoaders('less',{
       javascriptEnabled: true 
     }),
-    sass:generateLoaders('sass',{
+    sass: generateLoaders('sass',{
       indentedSyntax: true
     }),
     scss: generateLoaders('sass'),
-    stylus:generateLoaders('stylus'), //webpack的stylus-loader来将stylus语言转化为原生css
+    stylus: generateLoaders('stylus'), //webpack的stylus-loader来将stylus语言转化为原生css
   }
 }
-
 
 exports.styleLoaders = function(options){
   const output = []
   const loaders = exports.cssLoaders(options)
   for(const extension in loaders) {
-    const loader =loaders[extension]
+    const loader = loaders[extension]
     output.push({
       test: new RegExp('\\.' + extension + '$'),
-      use:loader
+      use: loader
     })
   }
   return output
 }
 
-
-exports.createNotifierCallback = () => {
+exports.createNotifierCallback = function() {
   const notifier = require('node-notifier')
-
   return (severity, errors) => {
     if (severity !== 'error') return
-
     const error = errors[0]
     const filename = error.file && error.file.split('!').pop()
-
     notifier.notify({
-      title: packageConfig.name,
+      title:"Webpack error",
       message: severity + ': ' + error.name,
       subtitle: filename || '',
-      icon: path.join(__dirname, 'logo.png')
+      icon: path.join(__dirname, '../','logo.png')
     })
   }
 }
