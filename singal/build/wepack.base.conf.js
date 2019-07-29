@@ -3,7 +3,6 @@ var path = require('path')
 var webpack = require('webpack')
 const utils = require('./utils')
 const config = require('../config/index')
-
 function resolve(dir) {
   return path.join(__dirname,'..',dir)
 }
@@ -21,12 +20,15 @@ module.exports = {
       ? config.dev.assetsPublicPath 
       : config.build.assetsPublicPath
   },
+  // 配置一些模块解析的参数
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json','.css','.scss'],
     alias: {
       '@': resolve('src'),
-    }
+    },
+    mainFields: ['browser', 'module', 'main'] // 此选项将决定在 package.json 中使用哪个字段导入模块。
   },
+  target:'web', // 默认
   module: {
     rules:[
       {
@@ -64,5 +66,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins:[]
 }

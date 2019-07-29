@@ -12,7 +12,7 @@ module.exports = {
     host: '0.0.0.0',  // 这样配置别人可以访问你的服务器
     port: 7987, // 服务器端口 
     cssSourceMap:true, // 开启css sourceMap
-    devtool: 'cheap-source-map', // 控制如何生成生成 source map。
+    devtool: 'eval-source-map', // 控制如何生成生成 source map。
     jsSourceMap: true,
     autoOpenBrowser: true, // 开启自动打开浏览器
     errorOverlay: true,  // 当出现编译错误或警告时候，在浏览器中显示全屏覆盖。

@@ -1,6 +1,8 @@
 .DS_Store
-chart1/node_modules/
-chart1/dist/
+singal/node_modules/
+singal/dist/
+multiple/node_modules/
+multiple/dist/
 .idea
 .vscode
 *.suo

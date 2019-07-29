@@ -116,7 +116,6 @@ exports.setMPA = (mode) => {
     const match = entryFile.match(/\/src\/entry\/(.*)\/index\.js/)
     const pageName = match && match[1]
     entry[pageName] = entryFile
-    console.log(path.join(__dirname,'..',`src/entry/${pageName}/index.html`))
     htmlWebpackPlugins.push(
       new htmlWebpackPlugin({
         template: path.join(__dirname,'..',`src/entry/${pageName}/index.html`),

@@ -10,5 +10,4 @@ class SearchTest extends React.Component{
     )
   }
 }
-
 export default SearchTest
