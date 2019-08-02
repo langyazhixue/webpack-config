@@ -14,7 +14,7 @@ function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 const buildWebpackConfig = merge(baseWebpackConfig,{
-  mode: 'none',
+  mode: 'production',
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.cssSourceMap,
@@ -27,10 +27,10 @@ const buildWebpackConfig = merge(baseWebpackConfig,{
     filename: utils.assetsPath('js/[name].[chunkhash:8].js'),  // 生产环境用chunkhash，并且打到 assetsSubDirectory 环境
     chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
-  externals:{
-    'react': 'React', 
-    'react-dom': 'ReactDOM'
-  },
+  // externals:{
+  //   'react': 'React', 
+  //   'react-dom': 'ReactDOM'
+  // },
   // optimization:{
   //   optimization:{
   //     splitChunks:{
@@ -93,20 +93,20 @@ const buildWebpackConfig = merge(baseWebpackConfig,{
       }]),
     // 生产打包优化
     
-    // 分离基础库，基础库用CDN
-    // new HtmlWebpackExternalsPlugin({
-    //   externals:[
-    //     {
-    //       module:'react',
-    //       entry:'https://cdn.staticfile.org/react/16.9.0-alpha.0/cjs/react.production.min.js',
-    //       global:'React'
-    //     },{
-    //       module:'react-dom',
-    //       entry:'https://cdn.staticfile.org/react-dom/16.9.0-alpha.0/cjs/react-dom.production.min.js',
-    //       global:'ReactDOM'
-    //     }
-    //   ]
-    // })
+    //分离基础库，基础库用CDN
+    new HtmlWebpackExternalsPlugin({
+      externals:[
+        {
+          module:'react',
+          entry:'https://cdn.staticfile.org/react/16.4.0/umd/react.production.min.js',
+          global:'React'
+        },{
+          module:'react-dom',
+          entry:'https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.production.min.js',
+          global:'ReactDOM'
+        }
+      ]
+    })
   ]
 })
 
