@@ -9,7 +9,10 @@
   }],
   "@babel/preset-react"
 ],
-  "plugins":[]
+  "plugins":[
+    [ "@babel/plugin-syntax-dynamic-import" ],
+    [ "@babel/plugin-proposal-decorators", { "legacy": true } ]
+]
 }
 
 // presets 一系列 babel-plugins 的集盒

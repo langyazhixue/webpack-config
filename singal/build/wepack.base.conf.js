@@ -12,7 +12,8 @@ module.exports = {
   context: path.resolve(__dirname,'../'),
   entry: {
     index: './src/index.js',
-    search: './src/search.js'
+    // search: './src/search.js',
+    // test:'./src/test.js'
   },
   output:{
     filename: '[name].js',

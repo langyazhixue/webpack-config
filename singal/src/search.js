@@ -1,48 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './styles/search.scss';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import logo from './asstes/images/avatar.png'
-import SearchTest from './ss'
+import zhCN from 'antd/es/locale/zh_CN'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+import './styles/search.scss'
+import 'antd/dist/antd.css'
+moment.locale('zh-cn')
 
-import logo2 from '../static/img/logo.png'
-
-// import zip111 from '../static/zip/1.zip'
-//import svg404 from './asstes/svg/404.svg' // svg-line-loader
-//const [raw, viewBox, d] = svg404.match(/^<svg.+?viewBox="(.+?)".*><path.+?d="(.+?)".*><\/path><\/svg>$/)
-
- 
-// var svg = svg404.replace("\"","").replace("\"","");
+import ButtonText from '@/components/button.jsx'
+import DownloadTest from '@/components/download.jsx'
+import { unUsedFunction333 } from '@/utils/test'
 class MySearch extends React.Component{
+  constructor(){
+    super(...arguments)
+    this.state = {
+      Text: null
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
   render(){
+    const { Text } = this.state
     return (
-      <div id='11' className='search-text'>
-      <SearchTest/>
-      <div>
-    
-
-      {/* <a id='video11' download = 'tes.zip' href={zip111}>下载zip</a> */}
-      <br/>
-      <a id='video222' onClick = { this.chickA }>下载zip</a>
-      </div>
-        {/* <div>
-          <img src='/static/img/logo.png'></img>
-        </div> */}
-        <div onClick= { this.handleClick }>按钮点击</div>
+      <div  className='search-text'>
+        <ButtonText />
+        <DownloadTest />
         <div className='bg'></div>
-        {/* <div>
-          图片插
-          <svg xmlns="http://www.w3.org/1999/xlink" height="100%" version="1.1" viewBox={viewBox}  className='icon-class'>
-            <path d={d}></path>
-          </svg>
-        </div> */}
+        <div>
+          <img src='/static/img/logo.png'></img>
+          <img src ={logo}></img>
+        </div>
+        <div onClick= { this.handleClick }>动态异步加载</div>
+        <div> 
+        { Text ? <Text/> :''} 
+        </div>
       </div>
     )
   }
   handleClick(){
-    import ('@/utils/index')
-      .then( (utils) => {
-        utils.test()
+    // unUsedFunction333()
+    let self = this
+    import ('@/utils/text.js')
+      .then( (Text) => {
+        debugger
+        self.setState({
+          Text: Text.default
+        })
       })
   }
 }
-ReactDOM.render(<MySearch/>,document.getElementById('app'))
+ReactDOM.render(<MySearch/>,document.getElementById('app-search'))

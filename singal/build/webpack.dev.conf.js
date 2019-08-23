@@ -8,7 +8,6 @@ const  HtmlWebpackPlugin = require('html-webpack-plugin')
 const  baseWebpackConfig = require('./wepack.base.conf')
 const  FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const  portfinder = require('portfinder')
-
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -33,11 +32,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     port: process.env.port||  config.dev.port,
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay 
-      ? { warnings: false, errors: true }
+      ? { warnings: true, errors: true }
       : false ,
     publicPath: config.dev.assetsPublicPath,
     proxy: config.dev.proxyTable,
-    contentBase:false, // 用 copy-webpack-plugin 代替
+    // 默认情况下，将使用当前工作目录作为提供内容的目录。将其设置为 false 以禁用 contentBase。 不需要设置
+    // contentBase:false, 
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       ignored: /node_modules/,
