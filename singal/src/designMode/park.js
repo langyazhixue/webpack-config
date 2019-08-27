@@ -42,7 +42,6 @@ class Park {
   }
   out (car) {
     const info = this.carList[car.num]
-    
     // 将停车位清空
     const place = info.place
     place.out()

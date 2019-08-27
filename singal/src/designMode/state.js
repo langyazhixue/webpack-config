@@ -32,3 +32,6 @@ var yellow = new State('yellow')
 
 red.handle(context)
 console.log(context.getState())
+
+
+
