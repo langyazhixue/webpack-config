@@ -99,7 +99,6 @@ for( let i = 0; i < 3;i ++) {
   }
   floors[i] = new Floor( i + 1, places)
 }
-
 const park = new Park(floors)
 
 // 初始化车辆 

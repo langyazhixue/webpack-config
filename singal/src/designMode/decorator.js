@@ -13,7 +13,6 @@ class Decorator {
     this.circle.draw()
     this.setRedBorder(circle)
   }
-
   setRedBorder(circle){
     console.log('设置红色边框')
   }
@@ -54,6 +53,7 @@ const  Foo =  {
   }
 }
 
+// 装饰class 
 @mixins(Foo)
 class MyClass {
 
@@ -62,8 +62,8 @@ class MyClass {
 let obj = new MyClass()
 obj.foo()
 
-// 装饰方法、、、
 
+// 装饰方法、、、
 function readonly1 (target, name, descriptor) {
   console.log(descriptor)
   descriptor.writable = false
@@ -87,13 +87,11 @@ class Person {
 
 
 var p = new Person()
-
 console.log(p.name())
 
 // p.name = function(){
 //   console.log('f')
 // }
-
 // p.name()
 
 
@@ -107,13 +105,10 @@ class MyMath {
 }
 
 const math = new  MyMath()
-
 const result = math.add (2, 4) // 设置value 劫持
-
 console.log('result', result)
 
 function log (target ,name ,descriptor) {
-
   console.log(descriptor.value)
     var oldValue = descriptor.value
     //  在函数设置的时候运行

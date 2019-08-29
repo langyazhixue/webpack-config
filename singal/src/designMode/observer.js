@@ -57,7 +57,7 @@ callbacks.fire('gogogo')
 
 const EventEmitter = require('events').EventEmitter
 
-class Dog extends  EventEmitter{
+class Dog extends  EventEmitter {
   constructor(name) {
     super(name)
     this.name = name
@@ -66,7 +66,7 @@ class Dog extends  EventEmitter{
 
 var simon = new Dog('simon')
 simon.on('bark', function(){
-  console.log(this.name,' barked')
+  console.log(this.name,'barked')
 })
 
 

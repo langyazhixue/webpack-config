@@ -1,4 +1,5 @@
 // import './promise.js'
+// import './prototype.js'
 // import './park.js'
 // import './factory.js'
 // import './singleton.js'
@@ -8,7 +9,11 @@
 // import './proxy.js'
 // import './observer'
 // import './iterator.js'
-import './state'
+//import './state'
+
+// import './memo'
+
+import './Mediator'
 
 // class Person{//定义了一个名字为Person的类
 //   constructor(name,age){  //constructor是一个构造方法，用来接收参数

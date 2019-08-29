@@ -11,7 +11,8 @@ window.onload = function(){
   var $p = $('p')
 
   function each(data) {
-    var $data = $(data) // 生成迭代器
+    // 生成迭代器
+    var $data = $(data) 
     $data.each(function(key, val) {
       console.log(key, val)
     })

@@ -6,6 +6,7 @@ class SingleObject {
   }
 }
 
+// 静态方法
 SingleObject.getInstance = (function(){
    // 利用了函数的闭包 
   let instance
@@ -16,7 +17,8 @@ SingleObject.getInstance = (function(){
     return instance
   }
 })()
-// 测试： 注意这里只能使用 静态函数 getInstance，不能 new  SingleObject
+
+// 测试： 注意这里只能使用 静态函数 getInstance，不能 new SingleObject
 
 let obj1 = SingleObject.getInstance()
 

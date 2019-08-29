@@ -1,6 +1,6 @@
 // 代理模式
 // import z4 from 'jquery'
-
+'use strict'
 class ReadImg {
   constructor(fileName){
     this.fileName = fileName
@@ -63,6 +63,7 @@ let star = {
   phone:'129009'
 }
 
+// Es6 拦截器
 let agent = new Proxy(star,  {
   get: function(target , key ){
     if(key === 'phone') {
@@ -87,9 +88,7 @@ let agent = new Proxy(star,  {
 })
 
 console.log(agent.phone)
-
 console.log(agent.price)
-
 agent.customPrice = 150000
 console.log(agent.customPrice)
 

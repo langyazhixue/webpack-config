@@ -50,7 +50,7 @@ class jQuery {
 
   }
 }
-
+// 工厂模式
 window.$ = function(selector) {
   return new jQuery(selector)
 }
