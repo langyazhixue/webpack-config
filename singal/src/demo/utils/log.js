@@ -1,9 +1,9 @@
 export default function log (type) {
   return function(target, name , descriptor) {
-    let oldValue = descriptor.value
+    let oldValue = descriptor.value // value 就是这个function
     descriptor.value = function(){
       console.log(`日志上报 ${type}`)
-      return oldValue.apply(this,arguments)
+      return oldValue.apply(this,arguments) // 在运行这个函数
     }
     return descriptor
   }

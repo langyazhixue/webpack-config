@@ -27,10 +27,8 @@ let getCart = (function(){
   return function(){
     if(!instance) {
       instance = new Cart()
-      return instance
-    } else {
-      return instance
     }
+    return instance
   }
 })()
 

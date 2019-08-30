@@ -45,7 +45,7 @@ window.onload = function(){
   console.log(app)
 }
 
-
-for (let [index, elem] of ['a', 'b'].entries()) {
-  console.log(index, elem);
-}
+// b.js
+require(['./amd.js'], function (moduleA){
+  console.log(moduleA.a); // 打印出：hello world
+})
