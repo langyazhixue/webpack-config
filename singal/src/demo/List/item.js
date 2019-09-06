@@ -58,7 +58,7 @@ export default class Item {
     $el.append($btn)
   }
   
-  // 添加到购物车
+  // 添加到购物车 
   @log('add')
   addToCartHandle(){
     this.cart.add(this.data)

@@ -37,13 +37,21 @@
 // designMode test
 
 // import './designMode/index'
-
+import largeNumber from '@langyaxue/lyx-test/index'
+// import largeNumber1 from 'large-number' 
+// console.log(largeNumber1)
+console.log(largeNumber)
+// var res2 = largeNumber1 ('999','1')
+// console.log(res2)
+var res = largeNumber('999','1')
+console.log(res)
 import App from './demo/app.js'
 window.onload = function(){
   let app = new App('app')
   app.init()
   console.log(app)
 }
+
 
 // b.js
 require(['./amd.js'], function (moduleA){

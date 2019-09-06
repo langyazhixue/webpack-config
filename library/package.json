@@ -1,0 +1,26 @@
+{
+  "name": "@langyaxue/lyx-test",
+  "version": "1.0.7",
+  "description": "this is a libray test",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack",
+    "prepublish": "webpack"
+  },
+  "keywords": [
+    "packLibrary",
+    "test"
+  ],
+  "author": "langyazhixue",
+  "license": "ISC",
+  "repository":{
+  "type":"git",
+  "url":"https://......."
+  },
+  "devDependencies": {
+    "terser-webpack-plugin": "^1.4.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
