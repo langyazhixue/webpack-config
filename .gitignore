@@ -1,8 +1,12 @@
 .DS_Store
+node_modules/
 singal/node_modules/
 singal/dist/
 multiple/node_modules/
 multiple/dist/
+
+library/node_modules/
+library/dist/
 .idea
 .vscode
 *.suo

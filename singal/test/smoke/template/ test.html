@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+<script>
+  function fun(n ,o) {
+    console.log('打印出来'+ o)
+    return {
+      fun: function(m) {
+        return fun(m, n)
+      }
+    }
+  }
+  console.group('b') 
+  var a = fun(0)  // 打印出来 undefined
+  a.fun(1) // 打印出来 0
+  a.fun(2) // 打印出来 0
+  a.fun(3)  // 打印出来 0
+  console.groupEnd() 
+
+  console.group('b') 
+  var b = fun(0).fun(1).fun(2).fun(3)  // 打印出来 undefined  打印出来 0  // 打印出来 1  // 打印出来 2 
+  console.groupEnd() 
+
+
+  console.group('c') 
+  var c = fun(0).fun(1)  // // 打印出来 undefined  打印出来 0
+  c.fun(2)  // 打印出来 1
+  c.fun(3) // 打印出来 1
+  console.groupEnd() 
+</script>

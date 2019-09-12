@@ -6,6 +6,16 @@ const config = require('../config/index')
 function resolve(dir) {
   return path.join(__dirname,'..',dir)
 }
+// const createLintingRule = () => ({
+//   test: /\.(js|vue)$/,
+//   loader: 'eslint-loader',
+//   enforce: 'pre',
+//   include: [resolve('src'), resolve('test')],
+//   options: {
+//     formatter: require('eslint-friendly-formatter'),
+//     emitWarning: !config.dev.showEslintErrorsInOverlay
+//   }
+// })
 
 module.exports = {
   // 基础目录：绝对路径，用于从配置中解析入口起点(entry point)和 loader，默认是当前目录，推荐传递一个值（不同操作系统路径解析不一样）
@@ -32,6 +42,7 @@ module.exports = {
   target:'web', // 默认
   module: {
     rules:[
+      // ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test:/\.jsx?$/,
         use:{
