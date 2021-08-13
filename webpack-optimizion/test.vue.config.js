@@ -1,36 +1,36 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
 // const UglifyPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require("compression-webpack-plugin");
-const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
-let { version, version_lib , openGzip,library } = require('./package.json');
-version = version.replace(/\./g,'_');
-version_lib = version_lib.replace(/\./g,'_');
+const CompressionPlugin = require('compression-webpack-plugin')
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
+let { version, version_lib, openGzip, library } = require('./package.json')
+version = version.replace(/\./g, '_')
+version_lib = version_lib.replace(/\./g, '_')
 module.exports = {
   publicPath: './', // 基本路径
   outputDir: 'dist', // 输出文件目录
-  assetsDir: "static",
+  assetsDir: 'static',
   lintOnSave: false, // eslint-loader 是否在保存的时候检查
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // webpack配置
   chainWebpack: (config) => {
     // 修复HMR
-    config.resolve.symlinks(true);
+    config.resolve.symlinks(true)
     // 别名配置
     config.resolve.alias
       .set('@', path.resolve(__dirname, './src'))
       .set('@a', path.resolve(__dirname, './src/assets'))
       .set('@c', path.resolve(__dirname, './src/components'))
       .set('@p', path.resolve(__dirname, './src/pages'))
-      .set('jquery$', 'jquery/dist/jquery.min.js');
+      .set('jquery$', 'jquery/dist/jquery.min.js')
   },
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...
-      config.mode = 'production';
+      config.mode = 'production'
 
       // 将每个依赖包打包成单独的js文件
-     /* let optimization = {
+      /* let optimization = {
         runtimeChunk: 'single',
         splitChunks: {
           chunks: 'all',
@@ -60,45 +60,45 @@ module.exports = {
             }
           })
         ]
-      };*/
+      }; */
       Object.assign(config, {
-        output:{
+        output: {
           ...config.output,
           filename: `static/js/[name].[chunkhash].${version}.js`,
           chunkFilename: `static/js/[name].[chunkhash].${version}.js`
         },
         // optimization,
-        plugins:[
+        plugins: [
           ...config.plugins,
           ...Object.keys(library).map(name => {
             return new webpack.DllReferencePlugin({
               context: process.cwd(),
-              manifest: require(`./libs/package/json/${name}.manifest.json`),
+              manifest: require(`./libs/package/json/${name}.manifest.json`)
             })
           }),
           new AddAssetHtmlPlugin(Object.keys(library).map(name => {
             return {
               filepath: require.resolve(path.resolve(`libs/package/js/${name}.${version_lib}.dll.js`)),
               outputPath: 'static/lib/js',
-              publicPath:'./static/lib/js',
+              publicPath: './static/lib/js',
               includeSourcemap: false
             }
-          })),
+          }))
         ]
-      });
-      if(openGzip){
+      })
+      if (openGzip) {
         config.plugins = [
           ...config.plugins,
           new CompressionPlugin({
-            test:/\.js$|\.html$|.\css/, //匹配文件名
-            threshold: 10240,//对超过10k的数据压缩
-            deleteOriginalAssets: false //不删除源文件
+            test: /\.js$|\.html$|.\css/, // 匹配文件名
+            threshold: 10240, // 对超过10k的数据压缩
+            deleteOriginalAssets: false // 不删除源文件
           })
         ]
       }
     } else {
       // 为开发环境修改配置...
-      config.mode = 'development';
+      config.mode = 'development'
     }
     Object.assign(config, {
       // 开发生产共同配置
@@ -108,15 +108,15 @@ module.exports = {
       //   'vue-router': 'VueRouter',
       //   'vuex': 'Vuex'
       // } // 防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(用于csdn引入)
-      plugins:[
+      plugins: [
         ...config.plugins,
         new webpack.ProvidePlugin({
-          jQuery: "jquery",
-          $: "jquery",
-          "windows.jQuery":"jquery"
+          jQuery: 'jquery',
+          $: 'jquery',
+          'windows.jQuery': 'jquery'
         })
       ]
-    });
+    })
   },
   productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
   // css相关配置
@@ -153,4 +153,4 @@ module.exports = {
     } // 代理转发配置，用于调试环境
   }, // 第三方插件配置
   pluginOptions: {}
-};
+}

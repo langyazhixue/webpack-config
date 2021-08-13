@@ -4,6 +4,9 @@ singal/node_modules/
 singal/dist/
 multiple/node_modules/
 multiple/dist/
+webpack-simple/node_modules/
+webpack-optimizion/node_modules/
+webpack-bundle/node_modules/
 
 library/node_modules/
 library/dist/
@@ -13,3 +16,5 @@ library/dist/
 *.ntvs*
 *.njsproj
 *.sln
+
+*/node_modules/
